@@ -1,0 +1,1400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>460</width>
+    <height>460</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>460</width>
+    <height>460</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>460</width>
+    <height>460</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Serial Comunication Example</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: #2a1a1f;
+    color: #f5e9e2;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>431</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QPushButton" name="servo_flags_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>220</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #722f37;
+    border: 1px solid #5a232a;
+    color: #f5e9e2;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #8d2f42;
+    border-color: #722f37;
+}
+
+QPushButton:pressed {
+    background-color: #5a232a;
+}
+
+QPushButton:disabled {
+    background-color: #3d2a2e;
+    border-color: #2a1a1f;
+    color: #6b5d5a;
+}</string>
+         </property>
+         <property name="text">
+          <string>Read Servo Status Flags</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLabel" name="label_17">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 12px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+             </property>
+             <property name="text">
+              <string>Servo Ready</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="servo_ready_label">
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(0, 0, 0);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="power_supply_status_label_">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 12px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+             </property>
+             <property name="text">
+              <string>Power supply</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="power_supply_status_label">
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(0, 0, 0);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QPushButton" name="power_supply_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>220</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #722f37;
+    border: 1px solid #5a232a;
+    color: #f5e9e2;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #8d2f42;
+    border-color: #722f37;
+}
+
+QPushButton:pressed {
+    background-color: #5a232a;
+}
+
+QPushButton:disabled {
+    background-color: #3d2a2e;
+    border-color: #2a1a1f;
+    color: #6b5d5a;
+}</string>
+         </property>
+         <property name="text">
+          <string>Read Power Supply Voltage Levels</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QLabel" name="positive_power_label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 12px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+           </property>
+           <property name="text">
+            <string>Positive supply voltage:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="negative_power_label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 12px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+           </property>
+           <property name="text">
+            <string>Negative supply voltage:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="read_tuning_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>220</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #722f37;
+    border: 1px solid #5a232a;
+    color: #f5e9e2;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #8d2f42;
+    border-color: #722f37;
+}
+
+QPushButton:pressed {
+    background-color: #5a232a;
+}
+
+QPushButton:disabled {
+    background-color: #3d2a2e;
+    border-color: #2a1a1f;
+    color: #6b5d5a;
+}</string>
+         </property>
+         <property name="text">
+          <string>Read Current Tunning Number</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="tuning_label">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 14px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+         </property>
+         <property name="text">
+          <string>x</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QPushButton" name="activate_tunning_number">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>114</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>220</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #722f37;
+    border: 1px solid #5a232a;
+    color: #f5e9e2;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #8d2f42;
+    border-color: #722f37;
+}
+
+QPushButton:pressed {
+    background-color: #5a232a;
+}
+
+QPushButton:disabled {
+    background-color: #3d2a2e;
+    border-color: #2a1a1f;
+    color: #6b5d5a;
+}</string>
+         </property>
+         <property name="text">
+          <string>Activate Current Tunning Number</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="write_tuning_spinBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QSpinBox, QDoubleSpinBox {
+    background-color: #3d2a2e;
+    border: 1px solid #5a232a;
+    border-radius: 4px;
+    padding: 6px 10px;
+    min-width: 80px;
+    color: #f5e9e2;
+}
+
+QSpinBox:focus, QDoubleSpinBox:focus {
+    border: 1px solid #d4a373;
+}
+
+
+</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QPushButton" name="write_function_generator_frequency_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>114</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>220</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #722f37;
+    border: 1px solid #5a232a;
+    color: #f5e9e2;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #8d2f42;
+    border-color: #722f37;
+}
+
+QPushButton:pressed {
+    background-color: #5a232a;
+}
+
+QPushButton:disabled {
+    background-color: #3d2a2e;
+    border-color: #2a1a1f;
+    color: #6b5d5a;
+}</string>
+         </property>
+         <property name="text">
+          <string>Write Function Generator Frequency</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="generator_frequency_spinBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QSpinBox, QDoubleSpinBox {
+    background-color: #3d2a2e;
+    border: 1px solid #5a232a;
+    border-radius: 4px;
+    padding: 6px 10px;
+    min-width: 80px;
+    color: #f5e9e2;
+}
+
+QSpinBox:focus, QDoubleSpinBox:focus {
+    border: 1px solid #d4a373;
+}
+
+
+</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>1600</number>
+         </property>
+         <property name="singleStep">
+          <number>10</number>
+         </property>
+         <property name="value">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QPushButton" name="write_function_generator_amplitude_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>220</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #722f37;
+    border: 1px solid #5a232a;
+    color: #f5e9e2;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #8d2f42;
+    border-color: #722f37;
+}
+
+QPushButton:pressed {
+    background-color: #5a232a;
+}
+
+QPushButton:disabled {
+    background-color: #3d2a2e;
+    border-color: #2a1a1f;
+    color: #6b5d5a;
+}</string>
+         </property>
+         <property name="text">
+          <string>Write Function Generator Amplitude</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="generator_amplitude_spinBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QSpinBox, QDoubleSpinBox {
+    background-color: #3d2a2e;
+    border: 1px solid #5a232a;
+    border-radius: 4px;
+    padding: 6px 10px;
+    min-width: 80px;
+    color: #f5e9e2;
+}
+
+QSpinBox:focus, QDoubleSpinBox:focus {
+    border: 1px solid #d4a373;
+}
+
+</string>
+         </property>
+         <property name="maximum">
+          <number>4000</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QPushButton" name="generator_waveform_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>220</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #722f37;
+    border: 1px solid #5a232a;
+    color: #f5e9e2;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #8d2f42;
+    border-color: #722f37;
+}
+
+QPushButton:pressed {
+    background-color: #5a232a;
+}
+
+QPushButton:disabled {
+    background-color: #3d2a2e;
+    border-color: #2a1a1f;
+    color: #6b5d5a;
+}</string>
+         </property>
+         <property name="text">
+          <string>Write Function Generator Waveform</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="generator_waveform_spinBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QSpinBox, QDoubleSpinBox {
+    background-color: #3d2a2e;
+    border: 1px solid #5a232a;
+    border-radius: 4px;
+    padding: 6px 10px;
+    min-width: 80px;
+    color: #f5e9e2;
+}
+
+QSpinBox:focus, QDoubleSpinBox:focus {
+    border: 1px solid #d4a373;
+}
+
+</string>
+         </property>
+         <property name="maximum">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QLabel" name="label_20">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 14px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+         </property>
+         <property name="text">
+          <string>Command Send</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="command_label">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 14px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+         </property>
+         <property name="text">
+          <string>xxxxxxxxxx</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QLabel" name="label_21">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 14px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+         </property>
+         <property name="text">
+          <string>Command Response</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="response_label">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 14px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+         </property>
+         <property name="text">
+          <string>xxxxxxxxxx</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>219</width>
+      <height>39</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_76">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>11</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_78">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>71</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    color: #f5e9e2;
+    font-size: 14px;
+}
+
+QLabel.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f5e9e2;
+    background-color: #722f37;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+QLabel.subtitle {
+    font-size: 14px;
+    color: #d9cdc6;
+}
+
+QLabel.highlight {
+    color: #d4a373;
+    font-weight: bold;
+}
+
+QLabel.complementary {
+    color: #6b8e7e;
+}</string>
+       </property>
+       <property name="text">
+        <string>Port</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_108">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QComboBox" name="comboBox_6">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+    background-color: white;  /* Background color */
+    color: black;             /* Text color */
+    border: 2px #3daee9;   /* Border style and color */
+    padding: 2px 15px 2px 5px; /* Padding */
+    selection-background-color: red; /* Selected item background color */
+}
+
+QComboBox QAbstractItemView {
+    background-color: white; /* Dropdown list background color */
+    selection-background-color: blue; /* Selected item background color */
+    color: black; /* Text color in the dropdown list */
+}
+
+QComboBox::item {
+    padding: 4px 8px; /* Item padding */
+}
+
+QComboBox::item:selected {
+    background-color: red; /* Selected item background color */
+}</string>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="refres_coms">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>8</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton.secondary {
+    background-color: transparent;
+    border: 1px solid #d4a373;
+    color: #d4a373;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+QPushButton.secondary:hover {
+    background-color: rgba(212, 163, 115, 0.1);
+    border-color: #e8b786;
+    color: #e8b786;
+}
+
+QPushButton.secondary:pressed {
+    background-color: rgba(212, 163, 115, 0.2);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="images.qrc">
+           <normaloff>:/images/refresh-circular-arrow-icon-15.jpg</normaloff>:/images/refresh-circular-arrow-icon-15.jpg</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="connect_button">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>10</y>
+      <width>201</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton.secondary {
+    background-color: transparent;
+    border: 8px solid #d4a373;
+    color: #d4a373;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+QPushButton.secondary:hover {
+    background-color: rgba(212, 163, 115, 0.1);
+    border-color: #e8b786;
+    color: #e8b786;
+}
+
+QPushButton.secondary:pressed {
+    background-color: rgba(212, 163, 115, 0.2);
+}</string>
+    </property>
+    <property name="text">
+     <string>Connect</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="x_axis_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>50</y>
+      <width>67</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    color: #f5e9e2;  /* Text color (matches your QLabel) */
+    font-size: 14px;
+    spacing: 6px;    /* Space between checkbox and text */
+}
+
+/* Default checkbox (unchecked) */
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #a58a7a;  /* Softer border (less harsh than #d9cdc6) */
+    border-radius: 3px;
+    background: #3a2e2a;  /* Darker background for better contrast */
+}
+
+/* Checked state (more elegant) */
+QCheckBox::indicator:checked {
+    background-color: #d4a373;  /* Warm highlight color (like QLabel.highlight) */
+    border: 1px solid #d4a373;
+    
+}
+
+
+
+/* Pressed state (click feedback) */
+QCheckBox::indicator:pressed {
+    background: #5c4a44;
+}
+
+/* Disabled state */
+QCheckBox::indicator:disabled {
+    border: 1px solid #6b8e7e;
+    background: #3a3a3a;
+}
+
+/* Text color when checked (optional) */
+QCheckBox:checked {
+    color: #f5e9e2;  /* Keep original text color or use #d4a373 */
+}</string>
+    </property>
+    <property name="text">
+     <string>x-axis</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="y_axis_checkBox">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>50</y>
+      <width>67</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    color: #f5e9e2;  /* Text color (matches your QLabel) */
+    font-size: 14px;
+    spacing: 6px;    /* Space between checkbox and text */
+}
+
+/* Default checkbox (unchecked) */
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #a58a7a;  /* Softer border (less harsh than #d9cdc6) */
+    border-radius: 3px;
+    background: #3a2e2a;  /* Darker background for better contrast */
+}
+
+/* Checked state (more elegant) */
+QCheckBox::indicator:checked {
+    background-color: #d4a373;  /* Warm highlight color (like QLabel.highlight) */
+    border: 1px solid #d4a373;
+    
+}
+
+
+/* Pressed state (click feedback) */
+QCheckBox::indicator:pressed {
+    background: #5c4a44;
+}
+
+/* Disabled state */
+QCheckBox::indicator:disabled {
+    border: 1px solid #6b8e7e;
+    background: #3a3a3a;
+}
+
+/* Text color when checked (optional) */
+QCheckBox:checked {
+    color: #f5e9e2;  /* Keep original text color or use #d4a373 */
+}</string>
+    </property>
+    <property name="text">
+     <string>y-axis</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections/>
+</ui>

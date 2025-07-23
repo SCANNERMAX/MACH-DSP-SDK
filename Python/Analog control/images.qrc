@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="images">
+    <file>scanner_max.png</file>
+    <file>small_logo.png</file>
+  </qresource>
+</RCC>
