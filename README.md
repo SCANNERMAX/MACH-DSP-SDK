@@ -1,6 +1,6 @@
 # Pangolin Control System SDK
 
-![Pangolin Logo](small_logo.png)
+![Pangolin Logo](scanner_max.png)
 
 This repository contains SDKs for controlling and interfacing with the Pangolin Match-DSP system through both LabVIEW and Python implementations. The SDKs support analog waveform generation and serial communication for comprehensive control of the DSP system.
 
