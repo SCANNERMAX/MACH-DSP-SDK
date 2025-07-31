@@ -11,7 +11,6 @@ This repository contains SDKs for controlling and interfacing with the Pangolin 
   - Standard, cycloid, and custom waveform generation
   - Real-time waveform visualization
   - NI-DAQmx hardware integration
-  - Dual-axis control with mirror mode
 
 - **Serial**:
   - PySerial interface for Match-DSP
