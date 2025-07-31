@@ -6,19 +6,6 @@ This repository contains SDKs for controlling and interfacing with the Pangolin 
 
 ## Features
 
-### LabVIEW SDK
-- **Analog Input Waveform Generation**:
-  - Custom waveform generation from text files
-  - Standard waveform generation (sine, square, triangle, sawtooth)
-  - National Instruments DAQ hardware integration
-
-- **Serial Comunication**:
-  - VISA serial communication interface
-  - Servo status monitoring
-  - Power supply voltage reading
-  - Tuning number configuration
-  - Function generator control
-
 ### Python SDK
 - **Analog Input Waveform Generation**:
   - Standard, cycloid, and custom waveform generation
@@ -31,6 +18,19 @@ This repository contains SDKs for controlling and interfacing with the Pangolin 
   - Servo status monitoring
   - Power supply voltage reading
   - Tuning number and function generator control
+
+### LabVIEW SDK
+- **Analog Input Waveform Generation**:
+  - Standard waveform generation (sine, square, triangle, sawtooth)
+  - Custom waveform generation from text files inputs
+  - National Instruments DAQ hardware integration
+
+- **Serial Comunication**:
+  - VISA serial communication interface
+  - Servo status monitoring
+  - Power supply voltage reading
+  - Tuning number configuration
+  - Function generator control
 
 ## System Requirements
 
