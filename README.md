@@ -35,7 +35,7 @@ This repository contains SDKs for controlling and interfacing with the Pangolin 
 
 ### Hardware
 - National Instruments DAQ device (e.g., NI USB-6003, NI USB-6211) - (analog input)
-- Match-DSP controller
+- Mach-DSP controller
 - USB-to-serial adapter (serial communication)
 
 ### Software
