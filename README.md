@@ -2,7 +2,7 @@
 
 ![Pangolin Logo](scanner_max.png)
 
-This repository contains SDKs for controlling and interfacing with the Pangolin Mach-DSP system through both LabVIEW and Python implementations. The SDKs support analog waveform generation and serial communication for comprehensive control of the DSP system.
+This repository contains SDKs for controlling and interfacing with the Pangolin Mach-DSP system through both LabVIEW and Python implementations. The SDKs support analog waveform generation and serial communication for comprehensive control of the Mach-DSP system.
 
 ## Features
 
