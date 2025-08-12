@@ -22,7 +22,9 @@ This repository contains SDKs for controlling and interfacing with the Pangolin 
 - **Analog Input Waveform Generation**:
   - Standard waveform generation (sine, square, triangle, sawtooth)
   - Custom waveform generation from text files inputs
+  - cycloids waveform generation
   - National Instruments DAQ hardware integration
+  - LabJack hardware integration
 
 - **Serial Comunication**:
   - VISA serial communication interface
