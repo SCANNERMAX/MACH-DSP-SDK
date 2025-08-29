@@ -20,6 +20,11 @@ from scipy.signal import sawtooth, square
 import nidaqmx
 from nidaqmx.constants import AcquisitionType
 
+# Labjack library
+import labjack.ljm as ljm
+import labjack.ljm.constants as ljm_constants
+from time import sleep
+
 class Pangolin_waveform_generator(qtw.QMainWindow):
     def __init__(self, * args, **kwargs):
         super().__init__(*args,**kwargs)
@@ -83,18 +88,25 @@ class Pangolin_waveform_generator(qtw.QMainWindow):
         # update graph
         self.ui.update_graph.clicked.connect(lambda: self.update_graph('update'))
         self.ui.clear_graph.clicked.connect(lambda: self.update_graph('clear'))
-        self.ui.send_to_daq.clicked.connect(self.run_ni_daq)
+        
 
         #ypdate cycloid labels
         self.ui.doubleSpinBox.valueChanged.connect(self.update_cycloid_frequency_label)
         self.update_cycloid_frequency_label(self.ui.doubleSpinBox.value())
         
-        
+        # setup NI class
         self.NI_DAQ_thread = NI_DAQ(self.X_axis_data[:, 1],self.Y_axis_data[:, 1],self.sampling_rate.value())
-        self.ui.stop_daq.clicked.connect(self.NI_DAQ_thread.stop)
         self.NI_DAQ_thread.finished.connect(self.on_daq_finished)
-        self.ui.stop_daq.setEnabled(False)
         
+        # setup labjack class
+        self.LabJack_DAQ_thread = LabJack_DAQ(self.X_axis_data[:, 1], self.Y_axis_data[:, 1], self.sampling_rate.value())
+        self.LabJack_DAQ_thread.finished.connect(self.on_daq_finished)
+
+        # enable and disable DAQ
+        self.ui.send_to_daq.clicked.connect(self.run_daq)
+        self.ui.stop_daq.clicked.connect(self.stop_daq)
+        self.ui.stop_daq.setEnabled(False)
+
     def get_desktop_path(self):
         """Returns the path to the user's desktop"""
         # Platform-independent method using Qt
@@ -262,30 +274,60 @@ class Pangolin_waveform_generator(qtw.QMainWindow):
                 self.A.setStyleSheet("background-color: #FFFFFF;")  
                 self.num_points.setStyleSheet("background-color: #FFFFFF;")  
                 self.sample_rate_cycloid.setStyleSheet("background-color: #FFFFFF;") 
-                
-                
 
-    def run_ni_daq(self):
-        # Stop any running task first
-        if self.NI_DAQ_thread.isRunning():
+    def stop_daq(self):
+        daq_type = self.ui.DAQ_comboBox.currentText()
+        
+        if daq_type == "NI DAQ":
             self.NI_DAQ_thread.stop()
+        elif daq_type == "LabJack":
+            self.LabJack_DAQ_thread.stop()
+        
+        self.ui.send_to_daq.setEnabled(True)
+        self.ui.stop_daq.setEnabled(False)
 
-        self.NI_DAQ_thread.x_selected = self.ui.x_axis_checkBox.isChecked()
-        self.NI_DAQ_thread.y_selected = self.ui.y_axis_checkBox.isChecked()
-        self.NI_DAQ_thread.mirror_mode = self.ui.checkBox.isChecked()
+    def run_daq(self):
+        daq_type = self.ui.DAQ_comboBox.currentText()
+        
+        if daq_type == "NI DAQ":
+            # Stop any running task first
+            if self.NI_DAQ_thread.isRunning():
+                self.NI_DAQ_thread.stop()
 
-        # Pass the data directly (let thread handle empty arrays)
-        self.NI_DAQ_thread.X_axis_data = self.X_axis_data[:, 1] if len(self.X_axis_data) > 0 else np.array([])
-        self.NI_DAQ_thread.Y_axis_data = self.Y_axis_data[:, 1] if len(self.Y_axis_data) > 0 else np.array([])
+            self.NI_DAQ_thread.x_selected = self.ui.x_axis_checkBox.isChecked()
+            self.NI_DAQ_thread.y_selected = self.ui.y_axis_checkBox.isChecked()
+            self.NI_DAQ_thread.mirror_mode = self.ui.checkBox.isChecked()
+
+            # Pass the data
+            self.NI_DAQ_thread.X_axis_data = self.X_axis_data[:, 1] if len(self.X_axis_data) > 0 else np.array([])
+            self.NI_DAQ_thread.Y_axis_data = self.Y_axis_data[:, 1] if len(self.Y_axis_data) > 0 else np.array([])
+            self.NI_DAQ_thread.sampling_rate = self.sampling_rate.value()
             
-        self.NI_DAQ_thread.sampling_rate = self.sampling_rate.value()
-        # Start new acquisition
-        self.NI_DAQ_thread.start()
-        self.ui.send_to_daq.setEnabled(False)  # Disable while running
+            # Start new acquisition
+            self.NI_DAQ_thread.start()
+            
+        elif daq_type == "LabJack":
+            # Stop any running task first
+            if self.LabJack_DAQ_thread.isRunning():
+                self.LabJack_DAQ_thread.stop()
+
+            self.LabJack_DAQ_thread.x_selected = self.ui.x_axis_checkBox.isChecked()
+            self.LabJack_DAQ_thread.y_selected = self.ui.y_axis_checkBox.isChecked()
+            self.LabJack_DAQ_thread.mirror_mode = self.ui.checkBox.isChecked()
+
+            # Pass the data
+            self.LabJack_DAQ_thread.X_axis_data = self.X_axis_data[:, 1] if len(self.X_axis_data) > 0 else np.array([])
+            self.LabJack_DAQ_thread.Y_axis_data = self.Y_axis_data[:, 1] if len(self.Y_axis_data) > 0 else np.array([])
+            self.LabJack_DAQ_thread.sampling_rate = self.sampling_rate.value()
+            
+            # Start new acquisition
+            self.LabJack_DAQ_thread.start()
+        
+        self.ui.send_to_daq.setEnabled(False)
         self.ui.stop_daq.setEnabled(True)
 
     def on_daq_finished(self):
-        """Connect this to the NI_DAQ_thread's finished signal"""
+        """Connect this to the DAQ_thread's finished signal"""
         self.ui.send_to_daq.setEnabled(True)
         self.ui.stop_daq.setEnabled(False)
 
@@ -306,19 +348,22 @@ class Pangolin_waveform_generator(qtw.QMainWindow):
             self.waveform_time = np.linspace(0, int(self.number_of_points.value())/self.sampling_rate.value(), int(self.number_of_points.value()), endpoint=True)
 
         if self.waveform_selected == 'Sine':
-            self.sine_waveform_data = self.amplitude.value() * np.sin(2 * np.pi * self.waveform_frequency.value() * self.waveform_time)  # Sine wave
+            self.sine_waveform_data = (self.amplitude.value()/2) * np.sin(2 * np.pi * self.waveform_frequency.value() * self.waveform_time)  # Sine wave
             new_data = np.column_stack((self.waveform_time[:-1], self.sine_waveform_data[:-1]))
         if self.waveform_selected == 'Square':
-            self.square_waveform_data = self.amplitude.value() * square(2 * np.pi * self.waveform_frequency.value() * self.waveform_time)  # Sine wave
+            self.square_waveform_data = (self.amplitude.value()/2) * square(2 * np.pi * self.waveform_frequency.value() * self.waveform_time)  # Sine wave
             new_data = np.column_stack((self.waveform_time[:-1], self.square_waveform_data[:-1]))
         if self.waveform_selected == 'Triangle':
-            self.triangle_waveform_data = self.amplitude.value() * sawtooth(2 * np.pi * self.waveform_frequency.value() * self.waveform_time, width=0.5)  # Sine wave
+            self.triangle_waveform_data = (self.amplitude.value()/2) * sawtooth(2 * np.pi * self.waveform_frequency.value() * self.waveform_time, width=0.5)  # Sine wave
             new_data = np.column_stack((self.waveform_time[:-1], self.triangle_waveform_data[:-1]))
         if self.waveform_selected == 'Sawtooth':
-            self.sawtooth_waveform_data = self.amplitude.value() * sawtooth(2 * np.pi * self.waveform_frequency.value() * self.waveform_time, width=self.width.value())  # Sine wave
+            self.sawtooth_waveform_data = (self.amplitude.value()/2) * sawtooth(2 * np.pi * self.waveform_frequency.value() * self.waveform_time, width=self.width.value())  # Sine wave
             new_data = np.column_stack((self.waveform_time[:-1], self.sawtooth_waveform_data[:-1]))
 
-        #self.sampling_rate = self.ui.sample_rate_spinBox
+        
+        if self.ui.DAQ_comboBox.currentText() == "LabJack":
+            new_data[:, 1] = new_data[:, 1] + 2.5  # Shift waveform to be centered a 2.5 volts because labajck T4 (0-5 volts)
+
         self.number_of_points = self.ui.number_points_spinBox
 
         if axis_selected == 'X-Axis':
@@ -481,12 +526,19 @@ class Pangolin_waveform_generator(qtw.QMainWindow):
         self.ax.set_ylabel('volts', color='white')
         self.ax.xaxis.set_tick_params(labelcolor='white')
         self.ax.yaxis.set_tick_params(labelcolor='white')
-        self.ax.grid(True)
+        self.ax.grid(True, alpha=0.2)
         # Force autoscaling
         self.ax.relim()  # Recalculate limits
         self.ax.autoscale_view()  # Auto-scale the view
         # Adjust subplot parameters to maximize plot space
-        self.ax.figure.subplots_adjust(left=0.1, right=0.95, top=0.95, bottom=0.1)
+        y_range = 20
+        tick_spacing = y_range / 10
+        y_ticks = [-10 + i * tick_spacing for i in range(11)]  # 11 ticks = 10 divisions
+    
+        # Set Y-axis ticks to ensure exactly 10 grid divisions
+        self.ax.set_yticks(y_ticks)
+
+        self.ax.figure.subplots_adjust(left=0.1, right=0.95, top=0.95, bottom=0.15)
         self.ax.set_facecolor((0, 0, 0, 0.1))
         
         self.canvas.draw()
@@ -581,6 +633,7 @@ class NI_DAQ(QThread):
         self.x_selected = False
         self.y_selected = False
         self.mirror_mode = False
+
     def stop(self):
         # Signal to stop
         self._stop_event.set()
@@ -709,6 +762,116 @@ class NI_DAQ(QThread):
                     pass
                 finally:
                     self.task = None
+
+class LabJack_DAQ(QThread):
+    def __init__(self, X_data, Y_data, sampling_rate):
+        super().__init__()
+        self._stop_event = threading.Event()
+        self.X_axis_data = X_data
+        self.Y_axis_data = Y_data
+        self.sampling_rate = sampling_rate
+        self.handle = None
+        self._lock = threading.Lock()
+        self._safe_to_stop = threading.Event()
+        self.x_selected = False
+        self.y_selected = False
+        self.mirror_mode = False
+        self.break_labjack = False
+        self.stream_active = False  # Added initialization
+
+    def stop(self):
+        self._stop_event.set()
+        if not self._safe_to_stop.wait(1.0):  # Wait for thread to signal it's safe
+            print("Warning: LabJack thread didn't stop gracefully")
+        
+        with self._lock:
+            if self.handle:
+                try:
+                    # Disable both stream outs
+                    ljm.eWriteName(self.handle, "STREAM_OUT0_ENABLE", 0)
+                    ljm.eWriteName(self.handle, "STREAM_OUT1_ENABLE", 0)
+                    
+                    if self.stream_active:
+                        try:
+                            ljm.eStreamStop(self.handle)
+                        except Exception as e:
+                            if "STREAM_NOT_RUNNING" not in str(e):
+                                print(f"Error stopping stream: {e}")
+                    
+                    ljm.close(self.handle)
+                except Exception as e:
+                    print(f"Cleanup error: {e}")
+                finally:
+                    self.handle = None
+                    self.stream_active = False
+
+    def run(self):
+        self._stop_event.clear()
+        self._safe_to_stop.clear()
+        
+        try:
+            handle = ljm.openS("ANY", "ANY", "ANY")
+            #handle = ljm.openS("T8", "ANY", "ANY")  # T8 device, Any connection, Any identifier
+            #handle = ljm.openS("T7", "ANY", "ANY")  # T7 device, Any connection, Any identifier
+            #handle = ljm.openS("T4", "ANY", "ANY")  # T4 device, Any connection, Any identifier
+            with self._lock:
+                self.handle = handle
+                self.stream_active = False
+            
+            info = ljm.getHandleInfo(handle)
+            print("Opened a LabJack with Device type: %i, Connection type: %i,\n"
+                "Serial number: %i, IP address: %s, Port: %i,\nMax bytes per MB: %i" %
+                (info[0], info[1], info[2], ljm.numberToIP(info[3]), info[4], info[5]))
+
+            scanRate = self.sampling_rate
+            scansPerRead = int(scanRate / 2)
+            scanListNames = ["STREAM_OUT0","STREAM_OUT1"]
+            scanList = ljm.namesToAddresses(len(scanListNames), scanListNames)[0]
+
+            targetAddr1 = 1000
+            targetAddr2 = 1002
+            streamOutIndex1 = 0
+            streamOutIndex2 = 1
+
+            x_data = np.array(self.X_axis_data, dtype=np.float64) 
+            if self.mirror_mode == True:
+                y_data = x_data
+            else:
+                y_data = np.array(self.Y_axis_data, dtype=np.float64)
+            
+            print("\nInitializing stream out...\n")
+            ljm.periodicStreamOut(handle, streamOutIndex1, targetAddr1, scanRate, len(x_data), x_data)
+            ljm.periodicStreamOut(handle, streamOutIndex2, targetAddr2, scanRate, len(y_data), y_data)
+            
+            print("Beginning stream out...\n")
+            actualScanRate = ljm.eStreamStart(handle, scansPerRead, len(scanList), scanList, scanRate)
+            with self._lock:
+                self.stream_active = True
+                
+            print("Stream started with scan rate of %f Hz." % actualScanRate)
+            
+            while not self._stop_event.is_set():
+                sleep(0.1)  # Check more frequently for stop signal
+                
+        except ljm.LJMError as ljme:
+            print(ljme)
+        except Exception as e:
+            print(e)
+        finally:
+            try:
+                with self._lock:
+                    if self.stream_active and handle:
+                        print("Stopping Stream...")
+                        ljm.eStreamStop(handle)
+                        self.stream_active = False
+                    if handle:
+                        ljm.close(handle)
+            except Exception as e:
+                print(f"Cleanup error: {e}")
+            finally:
+                with self._lock:
+                    self.handle = None
+                self._safe_to_stop.set()  # Signal that we're done
 
 class ColoredComboBoxDelegate(qtw.QStyledItemDelegate):
     def __init__(self, parent=None):

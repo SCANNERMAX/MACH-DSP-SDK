@@ -7,14 +7,26 @@
     <x>0</x>
     <y>0</y>
     <width>822</width>
-    <height>730</height>
+    <height>590</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>822</width>
+    <height>590</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>822</width>
+    <height>590</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Analog Waveform Generator</string>
@@ -163,7 +175,7 @@ QComboBox QAbstractItemView::item:hover {
        <rect>
         <x>10</x>
         <y>50</y>
-        <width>181</width>
+        <width>191</width>
         <height>51</height>
        </rect>
       </property>
@@ -180,7 +192,7 @@ QComboBox QAbstractItemView::item:hover {
           <string notr="true">color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>Voltage Amplitude (volts)</string>
+          <string>Voltage Peak to Peak</string>
          </property>
         </widget>
        </item>
@@ -202,16 +214,16 @@ QComboBox QAbstractItemView::item:hover {
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="minimum">
-          <double>-10.000000000000000</double>
+          <double>0.000000000000000</double>
          </property>
          <property name="maximum">
-          <double>10.000000000000000</double>
+          <double>20.000000000000000</double>
          </property>
          <property name="singleStep">
           <double>0.100000000000000</double>
          </property>
          <property name="value">
-          <double>5.000000000000000</double>
+          <double>2.000000000000000</double>
          </property>
         </widget>
        </item>
@@ -270,7 +282,7 @@ QComboBox QAbstractItemView::item:hover {
           <double>10.000000000000000</double>
          </property>
          <property name="value">
-          <double>100.000000000000000</double>
+          <double>10.000000000000000</double>
          </property>
         </widget>
        </item>
@@ -281,7 +293,7 @@ QComboBox QAbstractItemView::item:hover {
        <rect>
         <x>10</x>
         <y>110</y>
-        <width>181</width>
+        <width>191</width>
         <height>51</height>
        </rect>
       </property>
@@ -357,7 +369,7 @@ QComboBox QAbstractItemView::item:hover {
           <string notr="true">color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>Width</string>
+          <string>Simetry</string>
          </property>
         </widget>
        </item>
@@ -447,7 +459,7 @@ QPushButton:pressed {
        <rect>
         <x>10</x>
         <y>170</y>
-        <width>199</width>
+        <width>191</width>
         <height>51</height>
        </rect>
       </property>
@@ -1012,7 +1024,7 @@ QPushButton:pressed {
       <x>10</x>
       <y>270</y>
       <width>801</width>
-      <height>451</height>
+      <height>311</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -1178,7 +1190,8 @@ QPushButton:pressed {
      <item>
       <widget class="QCheckBox" name="checkBox">
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
+        <string notr="true">color: rgb(255, 255, 255);
+</string>
        </property>
        <property name="text">
         <string>Together (X-axis)</string>
@@ -1251,11 +1264,17 @@ QPushButton:pressed {
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(192,192,192);
+color: rgb(0,0,0);
 </string>
        </property>
        <item>
         <property name="text">
          <string>NI DAQ</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>LabJack</string>
         </property>
        </item>
       </widget>
@@ -1416,7 +1435,7 @@ QPushButton:pressed {
  </widget>
  <resources>
   <include location="images.qrc"/>
-  <include location="../../../.designer/backup/images.qrc"/>
+  <include location="images.qrc"/>
  </resources>
  <connections/>
 </ui>
