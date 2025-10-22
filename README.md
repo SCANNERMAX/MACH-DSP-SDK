@@ -2,7 +2,7 @@
 
 ![Pangolin Logo](scanner_max.png)
 
-This repository provides specialized libraries and templates for Pangolin Mach-DSP and galvanometer control. The Python and LabVIEW libraries offer comprehensive functionality, including analog input waveform generation and serial communication for system control and health monitoring. For embedded projects, the Arduino library implements the core XY2-100 and FB4 communication protocols.
+This repository provides specialized libraries and templates for Pangolin Mach-DSP and galvanometer control. The Python and LabVIEW libraries offer comprehensive functionality, including analog input waveform generation and serial communication for system control and health monitoring. For embedded projects, the Arduino and Raspberry Pi libraries implement the core XY2-100 and FB4 communication protocols.
 ## Features
 
 ### Python SDK
