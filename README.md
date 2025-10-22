@@ -32,7 +32,7 @@ This repository provides specialized libraries and templates for Pangolin Mach-D
   - Tuning number configuration
   - Function generator control
     
-### Arduino
+### Arduino & Raspberry Pi
   - XY2-100 comunication protocol
   - FB4 comunication protocol
     
