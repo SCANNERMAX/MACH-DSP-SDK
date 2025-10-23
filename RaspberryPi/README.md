@@ -24,7 +24,7 @@ Both scripts generate various waveforms (sine, square, triangle, sawtooth) with 
 - Required libraries:
   ```bash
   sudo apt update
-  sudo apt install python3-gpiozero python3-pigpio
+  sudo apt install python3-gpiozero
   ```
   
 ### Installation
