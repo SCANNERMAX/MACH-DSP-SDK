@@ -80,6 +80,7 @@ X_WAVEFORM = WaveformType.WAVE_TRIANGLE
 Y_WAVEFORM = WaveformType.WAVE_SQUARE
 
 # Available Waveforms
+'''
 WAVE_SINE - Sine wave
 WAVE_SQUARE - Square wave
 WAVE_TRIANGLE - Triangle wave
@@ -87,6 +88,7 @@ WAVE_RISING_SAW - Rising sawtooth
 WAVE_FALLING_SAW - Falling sawtooth
 WAVE_DC - Constant output
 WAVE_NONE - No output
+'''
 ```
 # Protocol Details
 XY2-100 Protocol
