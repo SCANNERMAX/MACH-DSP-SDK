@@ -67,8 +67,8 @@ Press Ctrl+C to stop the script gracefully.
 ### Configuration
 Modify these constants at the top of each script to customize behavior:
 
-python
 # Channel Settings
+```python
 DATA_AMPLITUDE_X = 41071    # X channel waveform amplitude
 DATA_AMPLITUDE_Y = 41071    # Y channel waveform amplitude
 FREQ_X = 20                 # X channel frequency (Hz)
@@ -87,7 +87,7 @@ WAVE_RISING_SAW - Rising sawtooth
 WAVE_FALLING_SAW - Falling sawtooth
 WAVE_DC - Constant output
 WAVE_NONE - No output
-
+```
 # Protocol Details
 XY2-100 Protocol
 18-bit resolution per channel
