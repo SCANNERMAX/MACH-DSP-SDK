@@ -39,15 +39,15 @@ Ensure required libraries are installed (see Requirements above)
 ### Pin Configuration
 XY2-100 Configuration (xy200_18_bits_python.py)
 
-FS_PIN: GPIO17 (Physical Pin 11) - Frame Sync
-SCLK_PIN: GPIO27 (Physical Pin 13) - Serial Clock
-XDATA_PIN: GPIO22 (Physical Pin 15) - X Data
-YDATA_PIN: GPIO23 (Physical Pin 16) - Y Data
+- FS_PIN: GPIO17 (Physical Pin 11) - Frame Sync
+- SCLK_PIN: GPIO27 (Physical Pin 13) - Serial Clock
+- XDATA_PIN: GPIO22 (Physical Pin 15) - X Data
+- YDATA_PIN: GPIO23 (Physical Pin 16) - Y Data
 
 FB4 Configuration (fb4_galvo.py)
-FS_PIN: GPIO17 (Physical Pin 11) - Frame Sync
-SCLK_PIN: GPIO27 (Physical Pin 13) - Serial Clock
-XYDATA_PIN: GPIO22 (Physical Pin 15) - Combined X/Y Data
+- FS_PIN: GPIO17 (Physical Pin 11) - Frame Sync
+- SCLK_PIN: GPIO27 (Physical Pin 13) - Serial Clock
+- XYDATA_PIN: GPIO22 (Physical Pin 15) - Combined X/Y Data
 
 ### Usage
 Running the Scripts
