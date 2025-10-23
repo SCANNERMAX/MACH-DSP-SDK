@@ -92,17 +92,17 @@ WAVE_NONE - No output
 ```
 # Protocol Details
 XY2-100 Protocol
-18-bit resolution per channel
-Separate data lines for X and Y
-1 control bit + 18 data bits 
-Data midpoint: 131072 (2^17)
+- 18-bit resolution per channel
+- Separate data lines for X and Y
+- 1 control bit + 18 data bits 
+- Data midpoint: 131072 (2^17)
 
 FB4 Protocol
-16-bit resolution per channel
-Combined X and Y data on single line
-32-bit packets (16-bit X + 16-bit Y)
-Data midpoint: 32768 (2^15)
-Special frame sync timing (first bit with FS low)
+- 16-bit resolution per channel
+- Combined X and Y data on single line
+- 32-bit packets (16-bit X + 16-bit Y)
+- Data midpoint: 32768 (2^15)
+- Special frame sync timing (first bit with FS low)
 
 # Performance Notes
 - The scripts are optimized for Raspberry Pi 5 but work on other models.
