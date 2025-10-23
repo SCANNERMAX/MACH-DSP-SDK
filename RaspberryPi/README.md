@@ -1,6 +1,6 @@
 # Raspberry Pi Galvo Controller
 
-Python implementations for controlling Pangolin Technology XY2-100 and FB4 compatible galvo systems using Raspberry Pi GPIO.
+Python implementations for controlling Pangolin Laser Systems galvanometers using XY2-100 and FB4 laser industry standards using Raspberry Pi GPIO.
 
 ## Overview
 
