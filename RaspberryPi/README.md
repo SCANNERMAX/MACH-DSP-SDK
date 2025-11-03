@@ -15,7 +15,7 @@ Both scripts generate various waveforms (sine, square, triangle, sawtooth) with 
 
 ### Hardware
 - Raspberry Pi (Tested on Raspberry Pi 5, compatible with Pi 3/4)
-- Cambridge Technology XY2-100 or FB4 compatible galvo system
+- Industry standard Pangolin Laser Systems Scanning technology XY2-100 or FB4
 - Basic wiring: 3-4 GPIO pins to galvo controller
 
 ### Software
